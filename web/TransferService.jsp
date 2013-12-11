@@ -12,10 +12,7 @@
         <title>Titan Bank - Transfer Funds</title>
     </head>
     <body>
-        <%
-            String acctNum = request.getParameter("acctNum");
-            String amount = request.getParameter("amount");
-        %>
+        
         <form name="transferForm" method="post" action="">
             <br/>
             <table width="400px" border="0">
@@ -29,7 +26,7 @@
                 
                 <tr>
                     <td>Account Number</td>
-                    <td><input type="text" name="acctNum" value=""></td>
+                    <td><input type="text" name="acctNumber" value=""></td>
                 </tr>
                 
                 <tr>

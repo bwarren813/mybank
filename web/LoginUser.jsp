@@ -4,6 +4,8 @@
     Author     : guestpc
 --%>
 
+<%@page import="com.spcollege.titanbank.bll.User"%>
+<%@page import="com.spcollege.titanbank.dal.UserRepository"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,11 +16,15 @@
     <body>
         
         <h1>Please login to your account</h1>
-        <form method="post" action="CheckLogin.jsp">
-            <br/>Username: <input type="text" name="username">
-            <br/>Password: <input type="password" name="password">
-            <br/><input type="submit" value="Submit">
-            
+        <form name="loginForm" action="LoginUser" method="post">
+            <table>
+                <tr><td><b>Username: </b></td><td><input type="text" name="username" /></td></tr>
+                <tr><td><b>Password: </b></td><td><input type="password" name="password" /></td></tr>
+                <tr><td colspan="2" align="center"><input type="submit" value="submit"> </td></tr>
+            </table>
         </form>
+        
+        
+        
     </body>
 </html>

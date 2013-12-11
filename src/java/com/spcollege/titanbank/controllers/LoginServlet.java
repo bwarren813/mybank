@@ -4,6 +4,9 @@
  */
 package com.spcollege.titanbank.controllers;
 
+import com.spcollege.titanbank.bll.User;
+import java.sql.*;
+import javax.sql.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -30,12 +33,7 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            String url ="/LoginUser.jsp";
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-            dispatcher.forward(request, response);
+           
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -66,7 +64,18 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        
+        if(checkUser(username, password)) {
+            RequestDispatcher rs = request.getRequestDispatcher("Welcome.jsp");
+            rs.forward(request, response);
+        } else {
+            System.out.println("Username or Password incorrect");
+            RequestDispatcher rs = request.getRequestDispatcher("LoginUser.jsp");
+            rs.include(request, response);
+        }
+        
     }
 
     /**
@@ -78,4 +87,24 @@ public class LoginServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    public static boolean checkUser(String username, String password) {
+        boolean st = false;
+        try {
+            // Load the driver
+            Class.forName("com.mysql.jdbc.Driver");
+            
+            // Create the connection with the database
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybank", "root", "welcome1");
+            PreparedStatement stmt = conn.prepareStatement("Select * from User where username=? and password=?");
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
+            st = rs.next();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return st;
+    }
 }

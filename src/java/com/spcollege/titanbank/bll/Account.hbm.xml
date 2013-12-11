@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 22, 2013 10:42:22 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.spcollege.titanbank.bll.Account" table="account">
+        <id name="accountId" type="java.lang.Integer">
+            <column name="account_id" />
+            <generator class="identity" />
+        </id>
+        <property name="acctNumber" type="int">
+            <column name="acctNumber" length="11" not-null="true" />
+        </property>
+        <property name="checking" type="double">
+            <column name="checking" not-null="true" />
+        </property>
+        <property name="savings" type="double">
+            <column name="savings" not-null="true" />
+        </property>
+        <one-to-one name="customer" class="com.spcollege.titanbank.bll.Customer" lazy="false" cascade="save-update"></one-to-one>
+    </class>
+</hibernate-mapping>

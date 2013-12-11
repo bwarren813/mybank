@@ -5,6 +5,7 @@
 --%>
 <%@page import="com.spcollege.titanbank.bll.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -16,21 +17,27 @@
         
         
         <h1>View Account Details</h1>
+        
         <table border="1" cellpadding="5">
+                
+                    
             <tr>
+                <th>Account ID</th>
                 <th>Account Number</th>
-                <th>Account Type</th>
-                <th>Date Opened</th>
-                <th>Available Funds</th>
+                <th>Checking</th>
+                <th>Savings</th>
             </tr>
-            
-            <tr>
-                <td><input type="text" value="${acctNumber}"/></td>
-                <td><input type="text" value="${accountType}"/></td>
-                <td><input type="text" value="${dateCreated}"/></td>
-                <td><input type="text" value="${availableFunds}"/></td>
-            </tr>
+            <tr valign="top">    
+            <c:forEach var="item" items="${account.items}">
+                <td><c:out value="${account.accountId}" /></td>
+                <td><c:out value="${account.acctNumber}" /></td>
+                <td><c:out value="${account.checking}" /></td>
+                <td><c:out value="${account.savings}"/></td>
+            </c:forEach>
+            </tr>    
         </table>
+
+            
         <br/><a href="Welcome.jsp">Back To Main Page</a> <a href="Logout.jsp">Log Out</a>
     
     </body>

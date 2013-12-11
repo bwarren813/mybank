@@ -4,6 +4,8 @@
     Author     : guestpc
 --%>
 
+<%@page import="com.spcollege.titanbank.dal.UserRepository"%>
+<%@page import="com.spcollege.titanbank.bll.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +14,8 @@
         <title>Welcome to Titan Bank</title>
     </head>
     <body>
+      
+        
         <h1>Welcome to Titan Bank</h1>
         Welcome back customer to the Titan Bank online bank system. Click <a href="Account.jsp">here</a>
         to view your account details.

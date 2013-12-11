@@ -39,7 +39,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TransferFServlet</servlet-name>
-        <url-pattern>/TransferFunds</url-pattern>
+        <url-pattern>/TransferService</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
